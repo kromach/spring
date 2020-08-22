@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-4.3.xsd" 
+>
+	<!-- 
+		bean?
+		Spring에서 POJO(plain, old java object)를 Beans 라고 부른다.
+		Beans는 어플리케이션의 핵심을 이루는 객체이며, Spring IoC (Inversion of Control) 컨테이너에 의해 인스턴스화, 관리, 생성된다.
+		Beans는 xml(설정 메타 데이터) 파일에 의해 생성된다. 컨테이너는 이 데이터를 통해 Bean의 생성, 사이클, 종속성 등을 알 수 있다.
+		어플리케이션의 객체가 지정되면 그 객체는 getBean() 메서드를 통해 가져올 수 있다.
+	 -->
+	<!-- 
+		xml이 로드될 때 Bean 클래스의 객체를 생성해주는 역할 
+		== HelloBean hello = new HelloBean(); 의 역할을 해줌
+	-->
+	<!-- 
+	<bean id="hello" class="test.spring.bean.HelloBean" />
+	<bean id="test" class="test.spring.bean.TestBean" />
+ 	-->
+ 	
+ 	<!-- base-package의 값으로 설정된 패키지 내의 클래스를 전체 스캔 -->
+ 	<!-- 
+ 		scan 하여 bean으로 등록 처리 해줄 수 있는 클래스는 클래스 선언부 상단에 
+ 		@Component 어노테이션이나 @Component를 상속받는 @Controller와 @Service, @Repository 가 있어야 한다. 
+ 		
+ 		@Component는 포괄적 선언
+ 		@Controller는 컨트롤러에
+ 		@Service는 서비스에
+ 		@Repository는 DAO에 
+ 	-->
+ 	<context:component-scan base-package="test.spring" />
+ 	
+ 	<!-- 의존성 주입을 위한 bean 등록 -->
+	<!-- <bean id="dependencyDAO" class="test.spring.model.DependencyDAO" /> -->
+
+</beans>
