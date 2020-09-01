@@ -19,24 +19,7 @@
 		xml이 로드될 때 Bean 클래스의 객체를 생성해주는 역할 
 		== HelloBean hello = new HelloBean(); 의 역할을 해줌
 	-->
-	<!-- 
-	<bean id="hello" class="test.spring.bean.HelloBean" />
-	<bean id="test" class="test.spring.bean.TestBean" />
- 	-->
- 	
- 	<!-- base-package의 값으로 설정된 패키지 내의 클래스를 전체 스캔 -->
- 	<!-- 
- 		scan 하여 bean으로 등록 처리 해줄 수 있는 클래스는 클래스 선언부 상단에 
- 		@Component 어노테이션이나 @Component를 상속받는 @Controller와 @Service, @Repository 가 있어야 한다. 
- 		
- 		@Component는 포괄적 선언
- 		@Controller는 컨트롤러에
- 		@Service는 서비스에
- 		@Repository는 DAO에 
- 	-->
- 	<context:component-scan base-package="test.spring" />
- 	
- 	<!-- 의존성 주입을 위한 bean 등록 -->
-	<!-- <bean id="dependencyDAO" class="test.spring.model.DependencyDAO" /> -->
 
+ 	<context:component-scan base-package="board" />
+ 	
 </beans>

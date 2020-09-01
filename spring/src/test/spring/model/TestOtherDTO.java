@@ -3,22 +3,11 @@ package test.spring.model;
 import java.beans.ConstructorProperties;
 import java.util.Date;
 
-public class TestDTO {
+public class TestOtherDTO {
 	
 	private String id;
 	private String pw;
-	private String reg; 
-	
-	TestDTO() {};
-	TestDTO(String id) {
-		this.id = id;
-	};
-
-	@ConstructorProperties({"user_id", "user_pw"})
-	TestDTO(String id, String pw) {
-		this.id = id;
-		this.pw = pw;
-	};
+	private TestDTO testDTO; 
 
 	public final String getId() {
 		return id;
@@ -32,11 +21,19 @@ public class TestDTO {
 	public final void setPw(String pw) {
 		this.pw = pw;
 	}
-	public final String getReg() {
-		return reg;
+	public TestDTO getTestDTO() {
+		return testDTO;
 	}
-	public final void setReg(String reg) {
-		this.reg = reg;
+	public void setTestDTO(TestDTO testDTO) {
+		this.testDTO = testDTO;
+	}
+	
+	public void runOtherDTO() {
+		
+		System.out.println( "testDTO id : " + testDTO.getId());
+		System.out.println( "this id : " + this.getId());
+		
+		
 	}
 	
 }

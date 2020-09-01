@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	namespace : 각 매퍼에 이름을 붙여준다. (마이바티스는 필수)
+	mapper 내부의 쿼리 태그 호출시 namespace속성명.쿼리태그의id값으로 호출한다.
+	ibatis는 파일이 하나인 경우 namespace를 적지 않아도 됨
+ -->
+ <!-- 
+ test 내 비교 연산자
+ <  :  lt
+ >  :  gt
+ <= :  lte
+ >= :  gte
+  -->
+<mapper namespace="board">
+
+	<select id="selectAticleCount" resultType="int">
+		SELECT count(*) FROM SPRING_BOARD 
+	</select>
+	
+	<select id="selectAticleList" parameterType="hashmap" resultType="boardDTO">
+		<![CDATA[
+		SELECT NUM, WRITER, SUBJECT, EMAIL, CONTENTS, PW, REG, 
+			 READCOUNT, REF, RE_STEP, RE_LEVEL, R 
+		FROM 
+	 		(SELECT NUM, WRITER, SUBJECT, EMAIL, CONTENTS, PW, REG, 
+	 		READCOUNT, REF, RE_STEP, RE_LEVEL, ROWNUM AS R 
+	 		FROM 
+				(SELECT NUM, WRITER, SUBJECT, EMAIL, CONTENTS, PW, REG, 
+	 				READCOUNT, REF, RE_STEP, RE_LEVEL
+	 			FROM SPRING_BOARD
+				ORDER BY ref DESC, re_step) 
+			ORDER BY ref DESC, re_step ) 
+		WHERE R BETWEEN #{start} and #{end}
+		]]>
+	</select>
+	
+	<select id="maxNum" resultType="string">
+		SELECT SPRING_BOARD_SEQ.nextval FROM dual
+	</select>
+	
+	<insert id="insertAticle" parameterType="boardDTO">
+		INSERT INTO SPRING_BOARD VALUES (#{num}, #{writer}, #{subject}, #{email}, #{contents}, #{pw}, sysdate, 0, #{ref}, #{re_step}, #{re_level})
+	</insert>
+	
+	<update id="updateReStep" parameterType="hashmap">
+		<![CDATA[
+		UPDATE SPRING_BOARD SET RE_STEP = RE_STEP + 1 WHERE REF = #{ref} and RE_STEP > #{re_step} 
+		]]>
+	</update>
+	
+	<select id="selectAticleInfo" parameterType="int" resultType="boardDTO">
+		SELECT * FROM SPRING_BOARD WHERE NUM = #{value}
+	</select>
+	
+	<select id="selectPw" parameterType="int" resultType="string">
+		SELECT PW FROM SPRING_BOARD WHERE NUM = #{value}
+	</select>
+	
+	<update id="updateAticle" parameterType="boardDTO">
+		UPDATE SPRING_BOARD SET 
+			WRITER = #{writer}
+			SUBJECT = #{subject}
+			EMAIL = #{email}
+			CONTENTS = #{contents}
+		WHERE NUM = #{num}  
+	</update>
+	
+	
+	<update id="updateReadCount" parameterType="int">
+		UPDATE SPRING_BOARD SET 
+			READCOUNT = READCOUNT + 1
+		WHERE NUM = #{value}  
+	</update>
+	
+	<delete id="deleteAticle" parameterType="int">
+		DELETE FROM SPRING_BOARD WHERE NUM = #{value}  
+	</delete>
+	
+</mapper>

@@ -1,0 +1,54 @@
+BODY {
+	FONT-SIZE: 9pt; COLOR: #77878F; LINE-HEIGHT: 160%; FONT-FAMILY: 맑은 고딕,verdana,tahoma; 
+	background-color: #E7F0EC;
+}
+TABLE {
+	width: 500; margin: auto; text-align: center; border: 1px solid #77878F; border-collapse: collapse; background-color: #dbe1e3;
+}
+TR {
+	FONT-SIZE: 9pt; COLOR: #000; LINE-HEIGHT: 160%; FONT-FAMILY: 맑은 고딕,verdana,tahoma; border: 1px solid #77878F; padding: 5px;
+}
+TD {
+	FONT-SIZE: 9pt; COLOR: #000; LINE-HEIGHT: 160%; FONT-FAMILY: 맑은 고딕,verdana,tahoma; border: 1px solid #77878F; padding: 5px;
+}
+SELECT {
+	FONT-SIZE: 9pt; COLOR: #000; LINE-HEIGHT: 160%; FONT-FAMILY: 맑은 고딕,verdana,tahoma
+}
+DIV {
+	FONT-SIZE: 9pt; LINE-HEIGHT: 160%; FONT-FAMILY: 맑은 고딕,verdana,tahoma
+}
+FORM {
+	FONT-SIZE: 9pt; LINE-HEIGHT: 160%; FONT-FAMILY: 맑은 고딕,verdana,tahoma
+}
+TEXTAREA {
+	BORDER-RIGHT: 1px solid #999999; BORDER-TOP: 1px solid #999999; FONT-SIZE: 9pt; BORDER-LEFT: 1px solid #999999 ; COLOR: #77878F; BORDER-BOTTOM: 1px solid #999999; FONT-FAMILY: 맑은 고딕,verdana; BACKGROUND-COLOR: white
+}
+INPUT {
+	BORDER-RIGHT: 1px solid #999999; BORDER-TOP: 1px solid #999999; FONT-SIZE: 9pt; BORDER-LEFT: 1px solid #999999; COLOR: #77878F; BORDER-BOTTOM: 1px solid #999999; FONT-FAMILY: 맑은 고딕,verdana; HEIGHT: 19px;
+}
+BUTTON {
+	BORDER-RIGHT: 1px solid #999999; BORDER-TOP: 1px solid #999999; FONT-SIZE: 9pt; BORDER-LEFT: 1px solid #999999; COLOR: #77878F; BORDER-BOTTOM: 1px solid #999999; FONT-FAMILY: 맑은 고딕,verdana; HEIGHT: 19px; BACKGROUND-COLOR: #E1E8E7;
+}
+
+A:link {text-decoration:none;color:#000}
+A:hover{text-decoration:yes;color:#000}
+A:visited {text-decoration:none;color:#000}
+
+.font-white {COLOR: #fff;}
+.font-bold {font-weight:bolder;}
+
+.pad-top10 {padding-top: 10px;}
+.taLeft {text-align: left;}
+.center {text-align: center;}
+#contents{width: 1200px;}
+#titleDiv{width:400px; height:50px;}
+.fl{float: left;}
+.fr{float: right;}
+.cl{clear:both;}
+
+.header{width:400px; height:50px; line-height: 50px; font-color:#000!important;}
+
+.tb_list{width:1100px;}
+.tb_write{width:1100px;}
+.tb_write .contentsArea {width:860px; height:300px;}
+.tb_write .inputTd {text-align: left;}

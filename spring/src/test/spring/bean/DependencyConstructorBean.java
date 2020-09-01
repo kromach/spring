@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import test.spring.model.DependencyDAO;
+import test.spring.model.TestDTO;
+import test.spring.model.TestOtherDTO;
 
 @Controller
 public class DependencyConstructorBean {
@@ -30,6 +32,30 @@ public class DependencyConstructorBean {
 	public String getStr() {
 		
 		System.out.println(dDao.getDiTestStr());
+		
+		return "/WEB-INF/views/spring01/hello.jsp";
+	}
+	
+	@Autowired
+	private TestDTO testDto;
+	
+	@RequestMapping("diXmlCst.git")
+	public String getXml() {
+		
+		System.out.println(testDto.getId());
+		System.out.println(testDto.getPw());
+		
+		return "/WEB-INF/views/spring01/hello.jsp";
+	}
+	
+	@Autowired
+	private TestOtherDTO testOtherDto;
+	
+	@RequestMapping("diXmlOth.git")
+	public String getXmlOther() {
+		
+		System.out.println(testOtherDto.getPw());
+		testOtherDto.runOtherDTO();
 		
 		return "/WEB-INF/views/spring01/hello.jsp";
 	}

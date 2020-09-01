@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- DOCTYPE configuration 선언 필요 -->
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<configuration>
+
+	<!--
+		local 캐싱 해제 
+		cacheEnable,localCacheScope 을 false, STATEMENT 를 적어주면 캐싱을 하지 않음  
+		<setting name="cacheEnable" value="false"/>
+		<setting name="localCacheScope" value="STATEMENT"/	>
+	-->
+	<!-- jdbcTypeForNull : TypeException이 발생하지 않도록 한번에 세팅하는 방법 -->
+		
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+
+	<!-- 전체 경로명을 매번 적기 불편하므로 별칭을 달아준다. 이후 매퍼 안에서 별칭으로 접근이 가능하다 -->
+	<typeAliases>
+		<typeAlias type="board.model.dto.BoardDTO" alias="boardDTO" />
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="/sql/boardSQL.xml" />
+	</mappers>
+
+</configuration>
