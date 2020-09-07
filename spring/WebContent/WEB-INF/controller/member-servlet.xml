@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-4.3.xsd" 
+>
+
+	<!-- 
+		xml이 로드될 때 Bean 클래스의 객체를 생성해주는 역할 
+		== HelloBean hello = new HelloBean(); 의 역할을 해줌
+	-->
+	<!-- base-package의 값으로 설정된 패키지 내의 클래스를 전체 스캔 -->
+ 	<context:component-scan base-package="member" />
+ 	
+ 	<!-- @Repository 를 달아주지 않았거나, dao 패키지를 component-scan 하지 않은 경우 -->
+ 	<!-- <bean id="memberDAO" class="member.model.dao.MemberDAOImpl" /> -->
+ 	
+ 	
+ 	<!-- set 메서드 주입시. ??  
+ 	<bean id="memberDAO" class="member.model.dao.MemberDAOImpl" >
+ 		<property name="sqlSession" ref="sqlSession" />
+ 	</bean>
+ 	-->
+</beans>

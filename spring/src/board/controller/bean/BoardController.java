@@ -1,18 +1,26 @@
 package board.controller.bean;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import board.controller.bean.service.BoardService;
 import board.model.dto.BoardDTO;
 
 @Controller
+@EnableWebMvc
 @RequestMapping("/board/")
 public class BoardController {
 
@@ -124,14 +132,43 @@ public class BoardController {
 	}
 	
 	@RequestMapping("writePro.git")
-	public String writePro(String pageNum, BoardDTO dto, Model model) throws SQLException {
+	public String writePro(String pageNum, @Valid BoardDTO dto, BindingResult bindingResult, Model model, RedirectAttributes rttr) throws SQLException {
 		
 		System.out.println("num " + dto.getNum());
-		boardService.insertAticle(dto);
+		System.out.println(bindingResult.hasErrors());
 		
-		model.addAttribute("pageNum", pageNum);
+		if(bindingResult.hasErrors()) {
+			System.out.println("오류 발생");
+			List<ObjectError> list = bindingResult.getAllErrors();
+			
+			List<String> eList = new ArrayList<String>();
+			for(ObjectError e : list) {
+				
+				System.out.println(e.getDefaultMessage());
+				
+				eList.add(e.getDefaultMessage());
+				
+			}
+			
+			// RedirectAttributes 를 사용해 redirect 시에 데이터를 전달 (https://blog.naver.com/allkanet72/220964699929)
+			// RedirectAttributes는 아래 그림처럼 리다이렉트가 발생하기 전에 모든 플래시 속성을 세션에 복사한다. 
+			// 리다이렉션 이후에는 저장된 플래시 속성을 세션에서 모델로 이동시킨다. 
+			// 헤더에 파라미터를 붙이지 않기 때문에 URL에 노출되지 않는다.
+			// addFlashAttribute() 는 리다이렉트 직전 플래시에 저장하는 메소드다. 리다이렉트 이후에는 소멸한다.
+			// 별도로 받는 처리는 안해줘도 view에 출력 된다
+	        rttr.addFlashAttribute("errorList", eList);
 
-		return "board/writePro";
+			return "redirect:/board/writeForm.git";
+			// return "board/writeForm";
+
+		} else {
+		
+			boardService.insertAticle(dto);
+			
+			model.addAttribute("pageNum", pageNum);
+	
+			return "board/writePro";
+		}
 	}
 	
 	@RequestMapping("modifyForm.git")

@@ -2,14 +2,26 @@ package board.model.dto;
 
 import java.sql.Timestamp;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
 public class BoardDTO {
 
 	private Integer num;
+	
+	@NotBlank(message = "작성자를 입력하세요.")
 	private String writer;
 	private String subject;
+	
+	@Email(message = "올바른 이메일 형식으로 입력하세요.")
 	private String email;
 	private String contents;
+	
+	@Size(min = 4, max = 10, message = "비밀번호는 4~10자리로 설정해주세요.")
 	private String pw;
+	
 	private Timestamp reg;
 	private Integer readCount;
 	private Integer ref;

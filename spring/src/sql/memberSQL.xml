@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	namespace : 각 매퍼에 이름을 붙여준다. (마이바티스는 필수)
+	mapper 내부의 쿼리 태그 호출시 namespace속성명.쿼리태그의id값으로 호출한다.
+	ibatis는 파일이 하나인 경우 namespace를 적지 않아도 됨
+ -->
+ <!-- 
+ test 내 비교 연산자
+ <  :  lt
+ >  :  gt
+ <= :  lte
+ >= :  gte
+  -->
+<mapper namespace="member">
+
+	<insert id="insertMember" parameterType="memberDTO">
+		INSERT INTO SPRING_MEMBER (ID, PW, NAME, AGE, EMAIL, REG, image) VALUES ( #{id}, #{pw}, #{name}, #{age,javaType=int,jdbcType=NUMERIC}, #{email}, sysdate, #{image})
+	</insert>
+	
+	<select id="loginCheck" parameterType="memberDTO" resultType="int">
+		SELECT count(*) FROM SPRING_MEMBER WHERE ID = #{id} AND PW = #{pw}  
+	</select>
+	
+	<select id="selectMemberInfo" parameterType="string" resultType="memberDTO">
+		SELECT * FROM SPRING_MEMBER WHERE ID = #{value}
+	</select>
+	
+	<!-- 마이바티스는 nullable 컬럼에 null이 넘어 왔을때 jdbcType 명시해주지 않으면 
+	TypeException이 발생하도록 설계되어 있다.
+	
+	jdbcType 명시 방법 
+	#1 각 #{} 안에 jdbcType을 지정 : ex. AGE = #{age, jdbcType=INTEGER},
+	#2 한번에 처리 하는 방법 : mybatis-config.xml에 아래 구문을 추가 
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	-->
+	<update id="updateMember" parameterType="memberDTO">
+		UPDATE SPRING_MEMBER 
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="pw != null">
+				PW = #{pw},
+			</if>
+			<if test="age != null">
+				AGE = #{age, jdbcType=INTEGER},
+			</if>
+			<if test="email != null">
+				Email = #{email},
+			</if>
+			<if test="image != null">
+				image = #{image},
+			</if>
+		</trim> 
+		WHERE ID = #{id}
+	</update>
+	
+	<delete id="deleteMember" parameterType="string">
+		DELETE FROM SPRING_MEMBER WHERE ID = #{value} 
+	</delete>
+	
+	<select id="idAvailCheck" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM SPRING_MEMBER WHERE ID = #{value} 
+	</select>
+	
+</mapper>

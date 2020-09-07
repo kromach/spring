@@ -21,9 +21,11 @@
 	<!-- 전체 경로명을 매번 적기 불편하므로 별칭을 달아준다. 이후 매퍼 안에서 별칭으로 접근이 가능하다 -->
 	<typeAliases>
 		<typeAlias type="board.model.dto.BoardDTO" alias="boardDTO" />
+		<typeAlias type="member.model.dto.MemberDTO" alias="memberDTO" />
 	</typeAliases>
 
 	<mappers>
+		<mapper resource="/sql/memberSQL.xml" />
 		<mapper resource="/sql/boardSQL.xml" />
 	</mappers>
 

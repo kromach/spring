@@ -17,6 +17,12 @@
 			<c:set var="pageNum" value="1"></c:set>
 			<div id="titleDiv"><h1>글 쓰기</h1></div>
 		</c:if>
+		<!-- RedirectAttributes 로 보낸 valid 결과를 alert으로 표시 -->
+		<c:forEach items="${errorList}" var="eList">
+			<script>
+				alert("${eList}");
+			</script>
+		</c:forEach>
 		<!-- 게시판 형태 -->
 		<form action="writePro.git" method="post">
 			<input type="hidden" name="pageNum" value="${pageNum}"/>

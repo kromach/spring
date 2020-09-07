@@ -44,6 +44,7 @@
 			<param-value>
 				/WEB-INF/controller/spring-servlet.xml
 				/WEB-INF/controller/board-context.xml
+				/WEB-INF/controller/member-servlet.xml
 			</param-value>
 		</init-param>
 	</servlet>
