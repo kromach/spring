@@ -14,10 +14,10 @@ public class FTPService {
     
     public void upload(File file, String newFileNm) throws SocketException, IOException, Exception {
     	
-		String serverIp = "112.175.184.72";
+		String serverIp = "ip주소";
 		// int serverPort = 21;  // port가 필요한 경우 사용 필요
-		String user = "kromach";
-		String password = "dmclx5ftp!";
+		String user = "아이디";
+		String password = "비밀번호";
 		
 		FileInputStream fis = null;
 		FTPClient ftpClient = new FTPClient();
