@@ -12,6 +12,6 @@ public class HelloBean {
 		
 		model.addAttribute("id", id); // model에 담아서 jsp 페이지로 파라미터 전달
 		
-		return "/WEB-INF/views/spring01/hello.jsp";
+		return "spring01/hello";
 	}
 }

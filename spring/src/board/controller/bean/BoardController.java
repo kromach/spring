@@ -3,6 +3,7 @@ package board.controller.bean;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -108,7 +109,9 @@ public class BoardController {
 	@RequestMapping("content.git")
 	public String content(int num, String pageNum, Model model) throws SQLException {
 		
-		BoardDTO aticle = boardService.selectAticleInfo(num, "Y");
+		Map aticle = boardService.selectAticleInfo(num, "Y");
+		
+		System.out.println(aticle);
 		
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("aticle", aticle);
@@ -122,7 +125,7 @@ public class BoardController {
 
 		// 답글인 경우 기존 글의 데이터 가져오기
 		if (num != null && Integer.parseInt(num) > 0) {
-			BoardDTO aticle = boardService.selectAticleInfo(Integer.parseInt(num), "N");
+			Map aticle = boardService.selectAticleInfo(Integer.parseInt(num), "N");
 			model.addAttribute("aticle", aticle);
 		}
 		
@@ -174,7 +177,7 @@ public class BoardController {
 	@RequestMapping("modifyForm.git")
 	public String modifyForm(int num, String pageNum, Model model) throws SQLException {
 		
-		BoardDTO article = boardService.selectAticleInfo(num, "N");
+		Map article = boardService.selectAticleInfo(num, "N");
 		model.addAttribute("article", article);
 		model.addAttribute("pageNum", pageNum);
 		

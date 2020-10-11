@@ -3,12 +3,14 @@ package board.model.dao;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import board.model.dto.BoardDTO;
+import common.bean.spring.LowerHashMap;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -40,17 +42,17 @@ public class BoardDAOImpl implements BoardDAO {
 			// 이전 답글 step 미리 올리기
 			HashMap map = new HashMap();
 			map.put("ref", dto.getRef());
-			map.put("re_step", dto.getRe_step());
+			map.put("re_step", dto.getReStep());
 			
 			sqlSession.update("board.updateReStep", map);
 			
-			dto.setRe_step(dto.getRe_step() + 1);
-			dto.setRe_level(dto.getRe_level() + 1);
+			dto.setReStep(dto.getReStep() + 1);
+			dto.setReLevel(dto.getReLevel() + 1);
 		} else { // 새글일때
 		
 			dto.setRef(number);
-			dto.setRe_level(0);
-			dto.setRe_step(0);
+			dto.setReLevel(0);
+			dto.setReStep(0);
 			
 		}
 		
@@ -75,20 +77,20 @@ public class BoardDAOImpl implements BoardDAO {
 		map.put("end", end);
 		
 		List list = sqlSession.selectList("board.selectAticleList", map);
-		
+		System.out.println(list);
 		return list;
 	}
 
 	@Override
-	public BoardDTO selectAticleInfo(int num, String readCountUp) throws SQLException {
+	public Map selectAticleInfo(int num, String readCountUp) throws SQLException {
 		
 		if(readCountUp == "Y") {
 			// readCount 1 추가
 			sqlSession.update("board.updateReadCount", num);
 		}
 		
-		BoardDTO aticle = sqlSession.selectOne("board.selectAticleInfo", num);
-		
+		Map aticle = sqlSession.selectOne("board.selectAticleInfo", num);
+//		System.out.println(aticle);
 		return aticle;
 	}
 

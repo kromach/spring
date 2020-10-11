@@ -66,8 +66,8 @@
 				<td class="taLeft">
 					<!-- 답글 제목 들여쓰기 -->
 					<c:set var="wid" value="0" /> 
-					<c:if test="${aticle.re_level > 0}">
-						<c:set var="wid" value="${8 * aticle.re_level}" /> 
+					<c:if test="${aticle.reLevel > 0}">
+						<c:set var="wid" value="${8 * aticle.reLevel}" /> 
 						<img src="../resources/img/replyImg.png" alt="reply" style="width:8px; margin-left:${wid}px" />
 					</c:if>
 					

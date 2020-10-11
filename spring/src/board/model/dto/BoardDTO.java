@@ -25,8 +25,8 @@ public class BoardDTO {
 	private Timestamp reg;
 	private Integer readCount;
 	private Integer ref;
-	private Integer re_step;
-	private Integer re_level;
+	private Integer reStep;
+	private Integer reLevel;
 	
 	public Integer getNum() {
 		return num;
@@ -82,17 +82,17 @@ public class BoardDTO {
 	public void setRef(Integer ref) {
 		this.ref = ref;
 	}
-	public Integer getRe_step() {
-		return re_step;
+	public Integer getReStep() {
+		return reStep;
 	}
-	public void setRe_step(Integer re_step) {
-		this.re_step = re_step;
+	public void setReStep(Integer reStep) {
+		this.reStep = reStep;
 	}
-	public Integer getRe_level() {
-		return re_level;
+	public Integer getReLevel() {
+		return reLevel;
 	}
-	public void setRe_level(Integer re_level) {
-		this.re_level = re_level;
+	public void setReLevel(Integer reLevel) {
+		this.reLevel = reLevel;
 	}
 		
 }

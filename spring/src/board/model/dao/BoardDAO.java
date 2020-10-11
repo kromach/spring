@@ -2,6 +2,7 @@ package board.model.dao;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import board.model.dto.BoardDTO;
 
@@ -17,7 +18,7 @@ public interface BoardDAO {
 	public List selectAticleList(int start, int end) throws SQLException;
 	
 	//게시글 한개 정보 가져오기 (조회수 업)
-	public BoardDTO selectAticleInfo(int num, String readCountUp) throws SQLException;
+	public Map selectAticleInfo(int num, String readCountUp) throws SQLException;
 
 	// 게시글 수정 
 	public int updateAticle(BoardDTO dto) throws SQLException;

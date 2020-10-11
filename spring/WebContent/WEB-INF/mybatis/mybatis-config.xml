@@ -15,6 +15,7 @@
 	<!-- jdbcTypeForNull : TypeException이 발생하지 않도록 한번에 세팅하는 방법 -->
 		
 	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
 		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
 
@@ -22,6 +23,7 @@
 	<typeAliases>
 		<typeAlias type="board.model.dto.BoardDTO" alias="boardDTO" />
 		<typeAlias type="member.model.dto.MemberDTO" alias="memberDTO" />
+		<typeAlias type="common.bean.spring.LowerHashMap" alias="camelmap" />
 	</typeAliases>
 
 	<mappers>

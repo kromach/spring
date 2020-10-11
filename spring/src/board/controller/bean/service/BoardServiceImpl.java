@@ -2,6 +2,7 @@ package board.controller.bean.service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardDTO selectAticleInfo(int num, String readCountUp) throws SQLException {
+	public Map selectAticleInfo(int num, String readCountUp) throws SQLException {
 		
 		return boardDAO.selectAticleInfo(num, readCountUp);
 	}

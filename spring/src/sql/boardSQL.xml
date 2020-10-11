@@ -52,7 +52,7 @@
 		]]>
 	</update>
 	
-	<select id="selectAticleInfo" parameterType="int" resultType="boardDTO">
+	<select id="selectAticleInfo" parameterType="int" resultType="camelmap">
 		SELECT * FROM SPRING_BOARD WHERE NUM = #{value}
 	</select>
 	
