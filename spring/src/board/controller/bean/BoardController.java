@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -31,6 +32,12 @@ public class BoardController {
 	@Autowired
 	BoardController(BoardService boardService) {
 		this.boardService = boardService;
+	}
+	
+	@RequestMapping("vv")
+	@ResponseBody
+	public String vvInit() {
+		return "dfdfdf";
 	}
 	
 	@RequestMapping("list.git")
